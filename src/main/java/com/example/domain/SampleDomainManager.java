@@ -9,7 +9,7 @@ import nablarch.core.validation.ee.DomainManager;
  * </p>
  */
 public final class SampleDomainManager
-        implements DomainManager<SampleDomainBean> {
+    implements DomainManager<SampleDomainBean> {
 
     @Override
     public Class<SampleDomainBean> getDomainBean() {

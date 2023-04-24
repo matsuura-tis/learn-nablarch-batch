@@ -109,7 +109,7 @@ public class SampleBatch extends NoInputDataBatchAction {
             MessageUtil.getStringResource(MESSAGE_ID);
         } catch (RuntimeException e) {
             throw new IllegalStateException(
-                    "メッセージ機能の疎通確認に失敗しました。ネストした例外メッセージを確認して下さい。", e);
+                "メッセージ機能の疎通確認に失敗しました。ネストした例外メッセージを確認して下さい。", e);
         }
     }
 
@@ -122,7 +122,7 @@ public class SampleBatch extends NoInputDataBatchAction {
             LOGGER.logInfo("取得したコード名称：" + codeName);
         } catch (RuntimeException e) {
             throw new IllegalStateException(
-                    "コード機能の疎通確認に失敗しました。ネストした例外メッセージを確認して下さい。", e);
+                "コード機能の疎通確認に失敗しました。ネストした例外メッセージを確認して下さい。", e);
         }
     }
 

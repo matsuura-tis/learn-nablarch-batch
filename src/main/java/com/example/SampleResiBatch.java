@@ -1,8 +1,5 @@
 package com.example;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import nablarch.core.log.Logger;
 import nablarch.core.log.LoggerManager;
 import nablarch.fw.DataReader;
@@ -13,6 +10,9 @@ import nablarch.fw.action.BatchAction;
 import nablarch.fw.reader.DatabaseRecordReader;
 import nablarch.fw.reader.DatabaseTableQueueReader;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 疎通確認用の常駐バッチアクションクラス。
  *
@@ -20,14 +20,20 @@ import nablarch.fw.reader.DatabaseTableQueueReader;
  */
 public class SampleResiBatch extends BatchAction<Map<String, Object>> {
 
-    /** ロガー。*/
+    /**
+     * ロガー。
+     */
     private static final Logger LOGGER
-            = LoggerManager.get(SampleResiBatch.class);
+        = LoggerManager.get(SampleResiBatch.class);
 
-    /** データが存在しないときの待機時間（ミリ秒）。*/
+    /**
+     * データが存在しないときの待機時間（ミリ秒）。
+     */
     private static final int WAIT_TIME = 10000;
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Result handle(Map<String, Object> inputData, ExecutionContext ctx) {
 
@@ -49,12 +55,12 @@ public class SampleResiBatch extends BatchAction<Map<String, Object>> {
      */
     @Override
     protected void transactionSuccess(Map<String, Object> inputData,
-            ExecutionContext context) {
+                                      ExecutionContext context) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("userInfoId", inputData.get("userInfoId"));
 
         getParameterizedSqlStatement("UPDATE_STATUS_NORMAL_END")
-                .executeUpdateByMap(map);
+            .executeUpdateByMap(map);
     }
 
     /**
@@ -66,12 +72,12 @@ public class SampleResiBatch extends BatchAction<Map<String, Object>> {
      */
     @Override
     protected void transactionFailure(Map<String, Object> inputData,
-            ExecutionContext context) {
+                                      ExecutionContext context) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("userInfoId", inputData.get("userInfoId"));
 
         getParameterizedSqlStatement("UPDATE_STATUS_ABNORMAL_END").
-                executeUpdateByMap(map);
+            executeUpdateByMap(map);
     }
 
     /**
@@ -79,7 +85,7 @@ public class SampleResiBatch extends BatchAction<Map<String, Object>> {
      * 入力データを取得するための{@link DatabaseRecordReader}を生成する。
      * 入力データは、処理ステータスが未処理のデータのみを対象とする。
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     public DataReader createReader(ExecutionContext ctx) {
         // データベースレコードリーダを生成

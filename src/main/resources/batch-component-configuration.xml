@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <component-configuration
-    xmlns="http://tis.co.jp/nablarch/component-configuration"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  https://nablarch.github.io/schema/component-configuration.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://tis.co.jp/nablarch/component-configuration"
+  xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  https://nablarch.github.io/schema/component-configuration.xsd">
 
   <!-- テーブル定義 -->
-  <import file="nablarch/schema-config.xml" />
+  <import file="nablarch/schema-config.xml"/>
 
   <!-- 精査に使用する文字集合定義 -->
   <import file="nablarch/core/validation/charset-definition.xml"/>
@@ -24,7 +24,7 @@
   <!-- メッセージ機能の設定 -->
   <import file="nablarch/core/message-by-property-files.xml"/>
   <!-- 自動採番型を持たないRDBMSで、ユニバーサルDAOを使用するための設定 -->
-  <import file="nablarch/common/dao.xml" />
+  <import file="nablarch/common/dao.xml"/>
   <!-- 日付 -->
   <import file="nablarch/core/date.xml"/>
 
@@ -33,57 +33,57 @@
   バッチ固有の設定読み込み
   -->
   <!-- データベース設定-->
-  <import file="nablarch/batch/db-for-batch.xml" />
+  <import file="nablarch/batch/db-for-batch.xml"/>
   <import file="data-source.xml"/>
 
   <!-- ファイルパス設置 -->
-  <import file="nablarch/batch/filepath-for-batch.xml" />
+  <import file="nablarch/batch/filepath-for-batch.xml"/>
   <!-- マルチスレッド実行制御機能 -->
-  <import file="nablarch/common/standalone/multi-thread.xml" />
+  <import file="nablarch/common/standalone/multi-thread.xml"/>
   <!-- ループ・トランザクション制御機能 -->
-  <import file="nablarch/batch/loop-transaction.xml" />
+  <import file="nablarch/batch/loop-transaction.xml"/>
   <!-- データリード機能 -->
-  <import file="nablarch/batch/batch-data-read.xml" />
+  <import file="nablarch/batch/batch-data-read.xml"/>
   <!-- スレッドコンテキスト機能 -->
-  <import file="nablarch/batch/threadcontext-for-batch.xml" />
+  <import file="nablarch/batch/threadcontext-for-batch.xml"/>
 
   <!-- ハンドラキュー構成 -->
   <list name="handlerQueue">
     <!-- ステータスコードを終了コードに変換するハンドラ -->
-    <component class="nablarch.fw.handler.StatusCodeConvertHandler" />
+    <component class="nablarch.fw.handler.StatusCodeConvertHandler"/>
 
     <!-- スレッドコンテキスト変数削除ハンドラ -->
-    <component class="nablarch.common.handler.threadcontext.ThreadContextClearHandler" />
+    <component class="nablarch.common.handler.threadcontext.ThreadContextClearHandler"/>
 
     <!-- グローバルエラーハンドラ -->
-    <component class="nablarch.fw.handler.GlobalErrorHandler" />
+    <component class="nablarch.fw.handler.GlobalErrorHandler"/>
 
     <!-- スレッドコンテキスト設定ハンドラ -->
-    <component-ref name="threadContextHandler" />
+    <component-ref name="threadContextHandler"/>
 
     <!-- データベース接続ハンドラ -->
-    <component-ref name="dbConnectionManagementHandler" />
+    <component-ref name="dbConnectionManagementHandler"/>
 
     <!-- トランザクションマネージャ -->
-    <component-ref name="transactionManagementHandler" />
+    <component-ref name="transactionManagementHandler"/>
 
     <!-- ディスパッチ -->
     <component class="nablarch.fw.handler.RequestPathJavaPackageMapping">
-      <property name="basePackage" value="${nablarch.commonProperty.basePackage}" />
-      <property name="immediate" value="false" />
+      <property name="basePackage" value="${nablarch.commonProperty.basePackage}"/>
+      <property name="immediate" value="false"/>
     </component>
 
     <!-- マルチスレッド実行制御ハンドラ -->
-    <component-ref name="multiThreadExecutionHandler" />
+    <component-ref name="multiThreadExecutionHandler"/>
 
     <!-- データベース接続ハンドラ -->
-    <component-ref name="dbConnectionManagementHandler" />
+    <component-ref name="dbConnectionManagementHandler"/>
 
     <!-- ループ・トランザクション制御ハンドラ -->
-    <component-ref name="loopHandler" />
+    <component-ref name="loopHandler"/>
 
     <!-- データリードハンドラ -->
-    <component-ref name="dataReadHandler" />
+    <component-ref name="dataReadHandler"/>
   </list>
 
   <!-- 初期化が必要なコンポーネント -->
@@ -92,13 +92,13 @@
     <property name="initializeList">
       <list>
         <!-- common/date.xml:業務日付コンポーネント -->
-        <component-ref name="businessDateProvider" />
+        <component-ref name="businessDateProvider"/>
         <!-- common/code.xml:コードのローダ -->
-        <component-ref name="codeLoader" />
+        <component-ref name="codeLoader"/>
         <!-- common/code.xml:コードのキャッシュ -->
-        <component-ref name="codeCache" />
+        <component-ref name="codeCache"/>
         <!-- common/message-by-property-files.xml:リソースのキャッシュ -->
-        <component-ref name="stringResourceCache" />
+        <component-ref name="stringResourceCache"/>
       </list>
     </property>
   </component>

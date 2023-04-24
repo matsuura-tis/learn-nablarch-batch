@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component-configuration
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="http://tis.co.jp/nablarch/component-configuration"
-        xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration https://nablarch.github.io/schema/component-configuration.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://tis.co.jp/nablarch/component-configuration"
+  xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration https://nablarch.github.io/schema/component-configuration.xsd">
 
 
   <import file="batch-boot.xml"/>
@@ -40,11 +40,11 @@
     </property>
   </component>
 
-<!-- マスタデータ復旧機能の登録 -->
-<!--
-  <list name="testEventListeners">
-    <component class="nablarch.test.RepositoryInitializer"/>
-    <component-ref name="masterDataRestorer"/>
-  </list>
--->
+  <!-- マスタデータ復旧機能の登録 -->
+  <!--
+    <list name="testEventListeners">
+      <component class="nablarch.test.RepositoryInitializer"/>
+      <component-ref name="masterDataRestorer"/>
+    </list>
+  -->
 </component-configuration>

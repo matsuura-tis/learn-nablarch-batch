@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <component-configuration
-    xmlns="http://tis.co.jp/nablarch/component-configuration"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  https://nablarch.github.io/schema/component-configuration.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://tis.co.jp/nablarch/component-configuration"
+  xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  https://nablarch.github.io/schema/component-configuration.xsd">
 
   <!-- テーブル定義 -->
-  <import file="nablarch/schema-config.xml" />
+  <import file="nablarch/schema-config.xml"/>
 
   <!-- 環境設定ファイル -->
   <config-file file="common.properties"/>
@@ -14,73 +14,72 @@
 
   <!-- Nablarch共通機能 -->
   <!-- コード機能 -->
-  <import file="nablarch/common/code.xml" />
+  <import file="nablarch/common/code.xml"/>
   <!-- メッセージ機能の設定 -->
   <import file="nablarch/core/message-by-property-files.xml"/>
   <!-- 日付 -->
   <import file="nablarch/core/date.xml"/>
 
 
-
   <!--
   バッチ固有の設定読み込み
   -->
   <!-- データベース接続・トランザクション設定-->
-  <import file="nablarch/batch/db-for-batch.xml" />
+  <import file="nablarch/batch/db-for-batch.xml"/>
   <import file="data-source.xml"/>
 
   <!-- ファイルパス設定 -->
-  <import file="nablarch/batch/filepath-for-batch.xml" />
+  <import file="nablarch/batch/filepath-for-batch.xml"/>
   <!-- スレッドコンテキスト機能 -->
-  <import file="nablarch/batch/threadcontext-for-batch.xml" />
+  <import file="nablarch/batch/threadcontext-for-batch.xml"/>
   <!-- 処理停止機能 -->
-  <import file="nablarch/common/standalone/process-stop.xml" />
+  <import file="nablarch/common/standalone/process-stop.xml"/>
   <!-- マルチスレッド実行制御機能 -->
-  <import file="nablarch/common/standalone/multi-thread.xml" />
+  <import file="nablarch/common/standalone/multi-thread.xml"/>
   <!-- プロセス常駐化機能（周期起動型） -->
-  <import file="nablarch/common/standalone/process-cyclic.xml" />
+  <import file="nablarch/common/standalone/process-cyclic.xml"/>
   <!-- リトライ機能 -->
-  <import file="nablarch/common/standalone/standalone-retry.xml" />
+  <import file="nablarch/common/standalone/standalone-retry.xml"/>
   <!-- ループ・トランザクション制御機能 -->
-  <import file="nablarch/batch/loop-transaction.xml" />
+  <import file="nablarch/batch/loop-transaction.xml"/>
   <!-- データリード機能 -->
-  <import file="nablarch/batch/batch-data-read.xml" />
+  <import file="nablarch/batch/batch-data-read.xml"/>
   <!-- メール送信機能 -->
-  <import file="nablarch/batch/mail/mail-sender.xml" />
+  <import file="nablarch/batch/mail/mail-sender.xml"/>
 
   <!-- ハンドラキュー構成 -->
   <list name="handlerQueue">
     <!-- ステータスコードを終了コードに変換するハンドラ -->
-    <component class="nablarch.fw.handler.StatusCodeConvertHandler" />
+    <component class="nablarch.fw.handler.StatusCodeConvertHandler"/>
     <!-- スレッドコンテキスト変数削除ハンドラ -->
-    <component class="nablarch.common.handler.threadcontext.ThreadContextClearHandler" />
+    <component class="nablarch.common.handler.threadcontext.ThreadContextClearHandler"/>
     <!-- グローバルエラーハンドラ -->
-    <component class="nablarch.fw.handler.GlobalErrorHandler" />
+    <component class="nablarch.fw.handler.GlobalErrorHandler"/>
     <!-- スレッドコンテキスト設定ハンドラ -->
-    <component-ref name="threadContextHandler" />
+    <component-ref name="threadContextHandler"/>
     <!-- リトライハンドラ -->
-    <component-ref name="retryHandler" />
+    <component-ref name="retryHandler"/>
     <!-- 常駐化ハンドラ -->
-    <component-ref name="processResidentHandler" />
+    <component-ref name="processResidentHandler"/>
     <!--処理停止ハンドラ -->
-    <component-ref name="processStopHandler" />
+    <component-ref name="processStopHandler"/>
     <!-- データベース接続ハンドラ -->
-    <component-ref name="dbConnectionManagementHandler" />
+    <component-ref name="dbConnectionManagementHandler"/>
     <!--トランザクションマネージャ -->
-    <component-ref name="transactionManagementHandler" />
+    <component-ref name="transactionManagementHandler"/>
     <!-- ディスパッチ -->
     <component class="nablarch.fw.handler.RequestPathJavaPackageMapping">
-      <property name="basePackage" value="." />
-      <property name="immediate" value="false" />
+      <property name="basePackage" value="."/>
+      <property name="immediate" value="false"/>
     </component>
     <!-- スレッド実行ハンドラ -->
-    <component-ref name="multiThreadExecutionHandler" />
+    <component-ref name="multiThreadExecutionHandler"/>
     <!-- データベース接続ハンドラ -->
-    <component-ref name="dbConnectionManagementHandler" />
+    <component-ref name="dbConnectionManagementHandler"/>
     <!-- ループ・トランザクション制御ハンドラ -->
-    <component-ref name="loopHandler" />
+    <component-ref name="loopHandler"/>
     <!-- データリードハンドラ -->
-    <component-ref name="dataReadHandler" />
+    <component-ref name="dataReadHandler"/>
   </list>
 
   <!-- 初期化が必要なコンポーネント -->
@@ -89,15 +88,15 @@
     <property name="initializeList">
       <list>
         <!-- common/message-by-property-files.xml:リソースのキャッシュ -->
-        <component-ref name="stringResourceCache" />
+        <component-ref name="stringResourceCache"/>
         <!-- common/date.xml:業務日付コンポーネント -->
-        <component-ref name="businessDateProvider" />
+        <component-ref name="businessDateProvider"/>
         <!-- common/mail/sender/handler/residentProcessStop.xml:プロセス停止ハンドラ -->
-        <component-ref name="processStopHandler" />
+        <component-ref name="processStopHandler"/>
         <!-- common/mail/mailTableSchema.xml:メール関連テーブルスキーマ情報の定義ファイル -->
-        <component-ref name="mailRequestTable" />
-        <component-ref name="mailRecipientTable" />
-        <component-ref name="mailAttachedFileTable" />
+        <component-ref name="mailRequestTable"/>
+        <component-ref name="mailRecipientTable"/>
+        <component-ref name="mailAttachedFileTable"/>
       </list>
     </property>
   </component>

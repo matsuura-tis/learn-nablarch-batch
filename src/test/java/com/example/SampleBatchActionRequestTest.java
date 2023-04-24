@@ -1,7 +1,6 @@
 package com.example;
 
 import com.example.test.XxxxBatchRequestExtension;
-
 import com.example.test.XxxxBatchRequestTestSupport;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +14,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 class SampleBatchActionRequestTest {
     XxxxBatchRequestTestSupport support;
 
-    /** 正常終了のテストケース。 */
+    /**
+     * 正常終了のテストケース。
+     */
     @Test
     void testNormalEnd() {
         support.execute(support.testName.getMethodName());
